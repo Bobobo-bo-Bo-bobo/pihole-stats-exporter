@@ -5,7 +5,7 @@ const version = "1.0.0-20200622"
 
 var userAgent = name + "/" + version
 
-const defaultExporterURL = "http://127.0.0.1:94711"
+const defaultExporterURL = "http://127.0.0.1:64711"
 const defaultPrometheusPath = "/metrics"
 const defaultInfluxDataPath = "/influx"
 

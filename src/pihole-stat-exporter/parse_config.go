@@ -53,5 +53,12 @@ func validateConfiguration(cfg Configuration) error {
 		return fmt.Errorf("URL to PiHole is missing")
 	}
 
+	if cfg.Exporter.PrometheusPath != "" && cfg.Exporter.PrometheusPath[0] != '/' {
+		return fmt.Errorf("Prometheus path must be an absolute path")
+	}
+
+	if cfg.Exporter.InfluxDataPath != "" && cfg.Exporter.InfluxDataPath[0] != '/' {
+		return fmt.Errorf("InfluxDB path must be an absolute path")
+	}
 	return nil
 }

@@ -52,4 +52,6 @@ type ExporterConfiguration struct {
 	URL            string `ini:"url"`
 	PrometheusPath string `ini:"prometheus_path"`
 	InfluxDataPath string `ini:"influxdata_path"`
+	SSLCert        string `ini:"ssl_cert"`
+	SSLKey         string `ini:"ssl_key"`
 }
