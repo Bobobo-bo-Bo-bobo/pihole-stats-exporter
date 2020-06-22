@@ -1,0 +1,7 @@
+*.swp
+tmp/
+src/gopkg.in/
+src/golang.org/
+src/github.com/
+bin/
+pkg/
