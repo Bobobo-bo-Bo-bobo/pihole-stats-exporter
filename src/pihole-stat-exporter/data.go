@@ -1,5 +1,10 @@
 package main
 
+import (
+	"net/http"
+	"time"
+)
+
 // PiHoleRawSummary - raw summary
 type PiHoleRawSummary struct {
 	DomainsBeingBlocked uint64                   `json:"domains_being_blocked"`
@@ -43,8 +48,13 @@ type Configuration struct {
 
 // PiHoleConfiguration - Configure access to PiHole
 type PiHoleConfiguration struct {
-	URL      string `ini:"url"`
-	AuthHash string `ini:"auth"`
+	URL            string `ini:"url"`
+	AuthHash       string `ini:"auth"`
+	InsecureSSL    bool   `ini:"insecure_ssl"`
+	CAFile         string `ini:"ca_file"`
+	Timeout        uint   `ini:"timeout"`
+	FollowRedirect bool   `ini:"follow_redirect"`
+	timeout        time.Duration
 }
 
 // ExporterConfiguration - configure metric exporter
@@ -54,4 +64,13 @@ type ExporterConfiguration struct {
 	InfluxDataPath string `ini:"influxdata_path"`
 	SSLCert        string `ini:"ssl_cert"`
 	SSLKey         string `ini:"ssl_key"`
+}
+
+// HTTPResult - result of the http_request calls
+type HTTPResult struct {
+	URL        string
+	StatusCode int
+	Status     string
+	Header     http.Header
+	Content    []byte
 }

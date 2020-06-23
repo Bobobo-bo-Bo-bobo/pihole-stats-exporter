@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	ini "gopkg.in/ini.v1"
 )
@@ -14,6 +15,9 @@ func parseConfigurationFile(f string) (*Configuration, error) {
 			URL:            defaultExporterURL,
 			PrometheusPath: defaultPrometheusPath,
 			InfluxDataPath: defaultInfluxDataPath,
+		},
+		PiHole: PiHoleConfiguration{
+			Timeout: 15,
 		},
 	}
 
@@ -45,12 +49,17 @@ func parseConfigurationFile(f string) (*Configuration, error) {
 		return nil, err
 	}
 
+	config.PiHole.timeout = time.Duration(config.PiHole.Timeout) * time.Second
+
 	return &config, nil
 }
 
 func validateConfiguration(cfg Configuration) error {
 	if cfg.PiHole.URL == "" {
 		return fmt.Errorf("URL to PiHole is missing")
+	}
+	if cfg.PiHole.Timeout == 0 {
+		return fmt.Errorf("Invalid timeout")
 	}
 
 	if cfg.Exporter.PrometheusPath != "" && cfg.Exporter.PrometheusPath[0] != '/' {

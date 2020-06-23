@@ -15,11 +15,14 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+var config *Configuration
+
 func main() {
 	var help = flag.Bool("help", false, "Show help text")
 	var version = flag.Bool("version", false, "Show version information")
 	var configFile = flag.String("config", "", "Path to configuration file")
 	var logFmt = new(log.TextFormatter)
+	var err error
 
 	flag.Usage = showUsage
 
@@ -47,7 +50,7 @@ func main() {
 		log.Fatal(formatLogString("Path to configuration file (--config) is mandatory"))
 	}
 
-	config, err := parseConfigurationFile(*configFile)
+	config, err = parseConfigurationFile(*configFile)
 	if err != nil {
 		log.WithFields(log.Fields{
 			"config_file": *configFile,
