@@ -1,7 +1,7 @@
 GOPATH	= $(CURDIR)
 BINDIR	= $(CURDIR)/bin
 
-PROGRAMS = pihole-stat-exporter
+PROGRAMS = pihole-stats-exporter
 
 depend:
 	env GOPATH=$(GOPATH) go get -u github.com/sirupsen/logrus
@@ -15,15 +15,15 @@ destdirs:
 	mkdir -p -m 0755 $(DESTDIR)/usr/bin
 
 strip: build
-	strip --strip-all $(BINDIR)/pihole-stat-exporter
+	strip --strip-all $(BINDIR)/pihole-stats-exporter
 
 install: strip destdirs install-bin
 
 install-bin:
-	install -m 0755 $(BINDIR)/pihole-stat-exporter $(DESTDIR)/usr/sbin
+	install -m 0755 $(BINDIR)/pihole-stats-exporter $(DESTDIR)/usr/sbin
 
 clean:
-	/bin/rm -f bin/pihole-stat-exporter
+	/bin/rm -f bin/pihole-stats-exporter
 
 distclean: clean
 	/bin/rm -rf src/gopkg.in/
