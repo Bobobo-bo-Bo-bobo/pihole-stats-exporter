@@ -10,7 +10,7 @@ type PiHoleRawSummary struct {
 	DomainsBeingBlocked uint64                   `json:"domains_being_blocked"`
 	DNSQueriesToday     uint64                   `json:"dns_queries_today"`
 	AdsBlockedToday     uint64                   `json:"ads_blocked_today"`
-	AdsPercentageToday  uint64                   `json:"ads_percentage_today"`
+	AdsPercentageToday  float64                  `json:"ads_percentage_today"`
 	UniqueDomains       uint64                   `json:"unique_domains"`
 	QueriesForwarded    uint64                   `json:"queries_forwarded"`
 	QueriesCached       uint64                   `json:"queries_cached"`
@@ -24,6 +24,23 @@ type PiHoleRawSummary struct {
 	PrivacyLevel        uint                     `json:"privacy_level"`
 	Status              string                   `json:"status"`
 	GravityLastUpdated  PiHoleGravityLastUpdated `json:"gravity_last_updated"`
+}
+
+// PiHoleQueryTypes - DNS query types
+type PiHoleQueryTypes struct {
+	Querytypes PiHoleQueriesByType `json:"querytypes"`
+}
+
+// PiHoleQueriesByType - detailed DNS queries by DNS type
+type PiHoleQueriesByType struct {
+	A     float64 `json:"A (IPv4)"`
+	AAAA  float64 `json:"AAAA (IPv6)"`
+	ANY   float64 `json:"ANY"`
+	SRV   float64 `json:"SRV"`
+	SOA   float64 `json:"SOA"`
+	PTR   float64 `json:"PTR"`
+	TXT   float64 `json:"TXT"`
+	NAPTR float64 `json:"NAPTR"`
 }
 
 // PiHoleGravityLastUpdated - information about last gravity update
