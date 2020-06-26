@@ -56,7 +56,7 @@ func influxExporter(response http.ResponseWriter, request *http.Request) {
 	}
 	now := time.Now().Unix() * 1e+09
 
-	payload = []byte(fmt.Sprintf(`pihole,type=summary,upstream=%s domains_being_blocked=%d %d
+	payload = []byte(fmt.Sprintf(`pihole,type=summary,upstream=%s,type=domains_being_blocked value=%d %d
 pihole,type=summary,upstream=%s,type=dns_queries_today value=%d %d
 pihole,type=summary,upstream=%s,type=ads_blocked_today value=%d %d
 pihole,type=summary,upstream=%s,type=ads_percentage_today value=%f %d

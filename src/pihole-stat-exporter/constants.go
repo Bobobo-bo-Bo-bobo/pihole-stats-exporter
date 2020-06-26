@@ -1,7 +1,7 @@
 package main
 
 const name = "pihole-stats-exporter"
-const version = "1.0.0-20200624"
+const version = "1.0.0"
 
 var userAgent = name + "/" + version
 
