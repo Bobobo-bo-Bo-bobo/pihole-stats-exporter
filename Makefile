@@ -12,7 +12,7 @@ build:
 	env GOPATH=$(GOPATH) go install $(PROGRAMS)
 
 destdirs:
-	mkdir -p -m 0755 $(DESTDIR)/usr/bin
+	mkdir -p -m 0755 $(DESTDIR)/usr/sbin
 
 strip: build
 	strip --strip-all $(BINDIR)/pihole-stats-exporter
