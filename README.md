@@ -5,7 +5,7 @@
 # Preface
 [PiHole](https://pi-hole.net/) provides a convenient DNS blackhole for blocking unwanted domains, e.g. advertisement or user tracking.
 
-To integrate the statistics into reporting solutions like [Prometheus(https://prometheus.io)] or [InfluxDB](https://github.com/influxdata/influxdb) (e.g. via [Telegraf](https://github.com/influxdata/telegraf)) this tool runs as a HTTP server, fetches the statistics from the PiHole server and exports the data as Prometheus and/or InfluxDB format
+To integrate the statistics into reporting solutions like [Prometheus](https://prometheus.io) or [InfluxDB](https://github.com/influxdata/influxdb) (e.g. via [Telegraf](https://github.com/influxdata/telegraf)) this tool runs as a HTTP server, fetches the statistics from the PiHole server and exports the data as Prometheus and/or InfluxDB format.
 
 # Build requirements
 To build this tool the Go compiler is required. The `Makefile` will fetch the required packages.
