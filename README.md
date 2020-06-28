@@ -5,7 +5,7 @@
 # Preface
 [PiHole](https://pi-hole.net/) provides a convenient DNS blackhole for blocking unwanted domains, e.g. advertisement or user tracking.
 
-To integrate the statistics into reporting solutions like [Prometheus](https://prometheus.io) or [InfluxDB](https://github.com/influxdata/influxdb) (e.g. via [Telegraf](https://github.com/influxdata/telegraf)) this tool runs as a HTTP server, fetches the statistics from the PiHole server and exports the data as Prometheus and/or InfluxDB format.
+To integrate the statistics into reporting solutions like [Prometheus](https://prometheus.io) or [InfluxDB](https://github.com/influxdata/influxdb) (e.g. via [Telegraf](https://github.com/influxdata/telegraf)) this tool runs as a HTTP server, fetches the statistics from the PiHole server and exports the data as Prometheus and/or InfluxDB format
 
 # Build requirements
 To build this tool the Go compiler is required. The `Makefile` will fetch the required packages.
@@ -17,10 +17,10 @@ It is recommended (prinicipal of least privilege) to run the service as a separa
 # Configuration
 ## Command line parameters
 ## Configuration file
-The configuration file is in the INI format. Configuration of the backend PiHole server must be listed in the `[pihole]` section, configuration of the exporter in the `[exporter]` section.
+The configuration file is in the INI format. Configuration of the backend PiHole server must be listed in the `pihole` section, configuration of the exporter in the `exporter` section.
 
 ### PiHole configuration
-* Section `[pihole]`
+* Section `pihole`
 
 | *Parameter* | *Description* | *Default* | *Comment* |
 |:------------|:--------------|:---------:|:----------|
@@ -32,7 +32,8 @@ The configuration file is in the INI format. Configuration of the backend PiHole
 | `url` | URL of the PiHole server | - | **Mandatory**, including the path to the API interface (`/admin/api.php`) |
 
 ### Exporter configuration
-* Section `[exporter]`
+* Section `exporter`
+
 | *Parameter* | *Description* | *Default* | *Comment* |
 |:------------|:--------------|:---------:|:----------|
 | `influxdata_path` | Path to provide the InfluxDB data | `/influx` | set to an empty value to disable export of InfluxDB format |
@@ -40,6 +41,18 @@ The configuration file is in the INI format. Configuration of the backend PiHole
 | `ssl_cert` | For HTTPS the location of the public SSL key | - | - |
 | `ssl_key` | For HTTPS the location of the unencrypted private SSL key | - | - |
 | `url` | URL to start the HTTP(S) server | `http://127.0.0.1:64711` | - |
+
+### Example
+```ini
+[pihole]
+url = "https://pihole.my.domain/admin/api.php"
+auth = caffeebabecaffebabe
+
+[exporter]
+url = "http://localhost:14711"
+prometheus_path = "/metrics"
+influxdata_path = "/telegraf"
+```
 
 # Licenses
 ## pihole-stats-exporter
@@ -256,13 +269,13 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-	 * Redistributions of source code must retain the above copyright
+     * Redistributions of source code must retain the above copyright
 notice, this list of conditions and the following disclaimer.
-	 * Redistributions in binary form must reproduce the above
+     * Redistributions in binary form must reproduce the above
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-	 * Neither the name of Google Inc. nor the names of its
+     * Neither the name of Google Inc. nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
