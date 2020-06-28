@@ -38,6 +38,18 @@ The configuration file is in the INI format. Configuration of the backend PiHole
 | `ssl_key` | For HTTPS the location of the unencrypted private SSL key | - | - |
 | `url` | URL to start the HTTP(S) server | `http://127.0.0.1:64711` | - |
 
+### Example
+```ini
+[pihole]
+url = "https://pihole.my.domain/admin/api.php"
+auth = caffeebabecaffebabe
+
+[exporter]
+url = "http://localhost:14711"
+prometheus_path = "/metrics"
+influxdata_path = "/telegraf"
+```
+
 # Licenses
 ## pihole-stats-exporter
 This program is free software: you can redistribute it and/or modify
