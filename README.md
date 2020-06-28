@@ -1,3 +1,7 @@
+**_Note:_** Because I'm running my own servers for several years, main development is done at at https://git.ypbind.de/cgit/pihole-stats-exporter/
+
+----
+
 # Preface
 [PiHole](https://pi-hole.net/) provides a convenient DNS blackhole for blocking unwanted domains, e.g. advertisement or user tracking.
 
